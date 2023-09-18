@@ -1,0 +1,33 @@
+<snippet>
+	<content><![CDATA[
+vector<int> LPS(string s) {
+	/* lps[i] = length of longest proper prefix of s which matches with a suffix ending at i */
+	int n = s.size();
+	vector<int> lps(n);
+	lps[0] = 0;
+	int i = 1, len = 0;
+	while (i < n) {
+		if (s[i] == s[len]) {
+			len++;
+			lps[i] = len;
+			i++;
+		}
+		else {
+			if (len > 0) {
+				len = lps[len - 1];
+			}
+			else {
+				lps[i] = 0;
+				i++;
+			}
+		}
+	}
+	return lps;
+}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>lps</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

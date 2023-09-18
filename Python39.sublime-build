@@ -1,0 +1,6 @@
+{
+  "cmd": ["python", "-u", "$file", "<", "input.txt", ">", "output.txt"],
+  "selector": "source.python",
+  "working_dir": "$file_path",
+  "shell": true
+}

@@ -1,0 +1,16 @@
+<snippet>
+	<content><![CDATA[
+struct hash_pair {
+public:
+	template<typename T, typename U>
+	size_t operator () (const pair<T, U>& p) const {
+		return hash<T>()(p.ff) ^ hash<U>()(p.ss);
+	}
+};
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>hashpair</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

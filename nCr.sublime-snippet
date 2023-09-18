@@ -1,0 +1,40 @@
+<snippet>
+	<content><![CDATA[
+#define FACTORIAL
+const int N = ${1:1e6};
+const int mod = MOD;
+int fact[N+1];
+
+void factorial() {
+	fact[0] = 1;
+	for (int i = 1; i <= N; i++)
+		fact[i] = (fact[i-1]*i) % mod;
+}
+
+int __pow(int a, int b) {
+	int res = 1;
+	a %= mod;
+	while (b) {
+		if (b&1) res = (res*a) % mod;
+		b = b >> 1;
+		a = (a*a) % mod;
+	}
+	return res;
+}
+
+int modInv(int n) {
+	return pow(n, mod-2);
+}
+
+int nCr(int n, int r) {
+	if (n < r) return 0;
+	if (r == 0) return 1;
+	return (fact[n] * modInv(fact[r]) % mod * modInv(fact[n-r]) % mod) % mod;
+}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>ncr</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

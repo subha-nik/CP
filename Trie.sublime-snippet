@@ -1,0 +1,51 @@
+<snippet>
+	<content><![CDATA[
+class Trie {
+public:
+	class TrieNode {
+	public:
+		TrieNode* ch[26];
+		int end;
+
+		TrieNode() {
+			for (int i = 0; i < 26; i++) {
+				ch[i] = NULL;
+			}
+			end = 0;
+		}
+	};
+	TrieNode* root;
+
+	Trie() {
+		root = new TrieNode();
+	}
+
+	void insert(string& word) {
+		TrieNode* curr = root;
+		for (char& w : word) {
+			if (!curr->ch[w - 'a']) {
+				curr->ch[w - 'a'] = new TrieNode();
+			}
+			curr = curr->ch[w - 'a'];
+		}
+		curr->end++;
+	}
+
+	bool search(string& word) {
+		TrieNode* curr = root;
+		for (char& w : word) {
+			if (!curr->ch[w - 'a']) {
+				return false;
+			}
+			curr = curr->ch[w - 'a'];
+		}
+		return curr->end;
+	}
+};
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>trie</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
